@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/RandomProblems.iml" filepath="$PROJECT_DIR$/.idea/RandomProblems.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RandomProblems.solutions.main.iml" filepath="$PROJECT_DIR$/.idea/modules/RandomProblems.solutions.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RandomProblems.solutions.test.iml" filepath="$PROJECT_DIR$/.idea/modules/RandomProblems.solutions.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/solutions.iml" filepath="$PROJECT_DIR$/.idea/modules/solutions.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/solutions.main.iml" filepath="$PROJECT_DIR$/.idea/modules/solutions.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/solutions.test.iml" filepath="$PROJECT_DIR$/.idea/modules/solutions.test.iml" />
