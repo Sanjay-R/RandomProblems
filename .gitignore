@@ -22,11 +22,21 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
 # Exclude IntelliJ crap
 .idea
 *.iml
-build/
 .gradle
+*/out
 
 # macOS stuff
 .DS_Store
+
+# Exclude build output directories
+*/build
+*/target
+
+# Not strictly necessary, however, *.jar files are often ignored and this one is required by the Gradle wrapper.
+!gradle/wrapper/gradle-wrapper.jar
