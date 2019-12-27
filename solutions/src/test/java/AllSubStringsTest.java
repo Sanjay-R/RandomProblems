@@ -15,6 +15,18 @@ class AllSubStringsTest {
     }
 
     @Test
-    void solve() {
+    void testSolveDefault() {
+        String input = "ALJBCADBHYKQNZBC";
+        String substring = "ABC";
+        AllSubStrings allSubStrings = new AllSubStrings(input, substring);
+        assertEquals(allSubStrings.solve(input, substring), 6);
+    }
+
+    @Test
+    void testSameExactInputAsSubstring() {
+        String input = "ABC";
+        String substring = "ABC";
+        AllSubStrings allSubStrings = new AllSubStrings(input, substring);
+        assertEquals(allSubStrings.solve(input, substring), 1);
     }
 }
