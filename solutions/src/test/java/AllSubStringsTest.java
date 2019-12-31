@@ -1,32 +1,23 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-class AllSubStringsTest {
-
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
+public class AllSubStringsTest {
 
     @Test
-    void testSolveDefault() {
-        String input = "ALJBCADBHYKQNZBC";
+    public void testSolveDefault() {
+        String input = "ALJBCADBHYKQNZBCA";
         String substring = "ABC";
         AllSubStrings allSubStrings = new AllSubStrings(input, substring);
-        assertEquals(allSubStrings.solve(input, substring), 6);
+        assertEquals(6, allSubStrings.solve(input, substring));
     }
 
     @Test
-    void testSameExactInputAsSubstring() {
+    public void testSameExactInputAsSubstring() {
         String input = "ABC";
         String substring = "ABC";
         AllSubStrings allSubStrings = new AllSubStrings(input, substring);
-        assertEquals(allSubStrings.solve(input, substring), 1);
+        assertEquals(1, allSubStrings.solve(input, substring));
     }
+
 }
