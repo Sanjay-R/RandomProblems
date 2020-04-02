@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Given a String input and a String substring, return the amount of sub-strings that can be formed in input using substring.
@@ -21,35 +24,32 @@ public class AllSubStrings {
 
     public int solve(String input, String substring) {
 
-        if (input.isEmpty() || substring.isEmpty()) {
+        if (input.isEmpty() || substring.isEmpty() || substring.length() > input.length()) {
             return 0;
         } else {
-//            input = input.toUpperCase();
-//            substring = substring.toUpperCase();
+
             char [] all = input.toCharArray();
             char [] sub = substring.toCharArray();
-            /*
-            LinkedList<Character> linkedList = new LinkedList<>();
+
+            List<Character> list1 = new ArrayList<>();
 
             for(int i = 0; i < input.length(); i++) {
                 //so if the char in the input is part of substring
                 //then it goes into this new array
-                if(substring.indexOf(input.charAt(i)) >= 0) {
-                    linkedList.add(input.charAt(i));
+                if(substring.indexOf(all[i]) >= 0) {
+                    list1.add(all[i]);
                 }
             }
-            char [] smaller = new char[linkedList.size()];
+            char [] smaller = new char[list1.size()];
             //now put it into a smaller char array
-            for (int i = 0; i < linkedList.size(); i++) {
-                smaller[i] = linkedList.get(i);
+            for (int i = 0; i < list1.size(); i++) {
+                smaller[i] = list1.get(i);
             }
-             */
+
 
             System.out.println("input is " + input);
-//            System.out.println("all is " + all[0] + all[1] + all[2]);
-//            System.out.println("sub is " + sub[0] + sub[1] + sub[2]);
-            System.out.println("");
-            return rec(all, sub, 0, 0);
+            System.out.println("smaller is " + list1.toString() + "\n");
+            return rec(smaller, sub, 0, 0);
         }
     }
 
@@ -67,7 +67,7 @@ public class AllSubStrings {
 
         //if you've already found a substring, gotta start over!
         /*
-        if(indexSub >= sub.length-1) {
+        if(indexSub > sub.length-1) {
             indexSub = 0;
         }
          */
@@ -86,7 +86,7 @@ public class AllSubStrings {
 
         //the amount to return
         int amount = 0;
-        //if last char of substring and last char in all, return 1
+        //if last char of substring and it's in 'all', return 1
         if(indexSub == sub.length-1 && all[indexAll] == sub[indexSub]) {
             System.out.println("indexAll=" + indexAll + " for " + sub[indexSub] + "-> return 1");
             return 1;
