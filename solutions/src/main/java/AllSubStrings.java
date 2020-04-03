@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Given a String input and a String substring, return the amount of sub-strings that can be formed in input using substring.
@@ -55,25 +53,20 @@ public class AllSubStrings {
 
     public int rec(char [] all, char [] sub, int indexAll, int indexSub) {
 
-        if(indexAll == all.length-1) {
-            if(all[indexAll] == sub[indexSub]) {
-                System.out.println("index " + indexAll + " has " + sub[indexSub] + " -> return 1 in start");
-                return 1;
-            }
-        } else if(indexAll > all.length-1) {
-            System.out.println("indexAll > all.length-1 -> return 0 in start");
+        if(indexAll > all.length-1 || indexSub > sub.length-1) {
+            System.out.println("return 0 in start -> indexAll > all.length-1");
             return 0;
         }
 
-        //if you've already found a substring, gotta start over!
-        /*
-        if(indexSub > sub.length-1) {
-            indexSub = 0;
+        if(indexAll == all.length-1) {
+            if (all[indexAll] == sub[indexSub]) {
+                System.out.println("return 1 in start -> " + "all[ " + indexAll + "] = " + sub[indexSub]);
+                return 1;
+            }
         }
-         */
 
         if(all[indexAll] != sub[indexSub]) {
-            while (indexAll <= all.length-1) {
+            while (indexAll < all.length-1) {
                 if(all[indexAll] == sub[indexSub]) {
                     break;
                 } else {
@@ -88,8 +81,8 @@ public class AllSubStrings {
         int amount = 0;
         //if last char of substring and it's in 'all', return 1
         if(indexSub == sub.length-1 && all[indexAll] == sub[indexSub]) {
-            System.out.println("indexAll=" + indexAll + " for " + sub[indexSub] + "-> return 1");
-            return 1;
+            System.out.println("return 1 -> " + "all[" + indexAll + "] = " + sub[indexSub]);
+            amount++;
         }
 
         //now after finding the (first) part of the substring you were looking for
@@ -98,18 +91,13 @@ public class AllSubStrings {
         amount+=rec(all, sub, indexAll+1, indexSub+1);
         //then continue to see if u can find the same part of substring further ahead in the input
         //so look for "A" further down the substring
-        System.out.print("back at indexAll is " + indexAll + " for " + sub[indexSub]);
-
-//        int next = indexAll+1;
-//        while(next < all.length) {
-//            amount+=rec(all, sub, next, indexSub+1);
-//            next+=1;
-//        }
-
+        System.out.print("back at all[" + indexAll + "] = " + sub[indexSub]);
         indexAll++;
         System.out.println(", send indexAll is " + indexAll);
+
         amount+= rec(all, sub, indexAll, indexSub);
         System.out.println("amount is " + amount + " for " + "indexAll=" + indexAll + "->" + sub[indexSub]);
+
         return amount;
     }
 }
