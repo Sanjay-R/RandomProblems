@@ -54,13 +54,11 @@ public class AllSubStrings {
     public int rec(char [] all, char [] sub, int indexAll, int indexSub) {
 
         if(indexAll > all.length-1 || indexSub > sub.length-1) {
-            System.out.println("return 0 in start -> indexAll > all.length-1");
             return 0;
         }
 
         if(indexAll == all.length-1) {
             if (all[indexAll] == sub[indexSub]) {
-                System.out.println("return 1 in start -> " + "all[ " + indexAll + "] = " + sub[indexSub]);
                 return 1;
             }
         }
@@ -75,13 +73,10 @@ public class AllSubStrings {
             }
         }
 
-        System.out.println(" index " + indexAll + " por " + sub[indexSub]);
-
         //the amount to return
         int amount = 0;
         //if last char of substring and it's in 'all', return 1
         if(indexSub == sub.length-1 && all[indexAll] == sub[indexSub]) {
-            System.out.println("return 1 -> " + "all[" + indexAll + "] = " + sub[indexSub]);
             amount++;
         }
 
@@ -91,12 +86,9 @@ public class AllSubStrings {
         amount+=rec(all, sub, indexAll+1, indexSub+1);
         //then continue to see if u can find the same part of substring further ahead in the input
         //so look for "A" further down the substring
-        System.out.print("back at all[" + indexAll + "] = " + sub[indexSub]);
         indexAll++;
-        System.out.println(", send indexAll is " + indexAll);
 
         amount+= rec(all, sub, indexAll, indexSub);
-        System.out.println("amount is " + amount + " for " + "indexAll=" + indexAll + "->" + sub[indexSub]);
 
         return amount;
     }
