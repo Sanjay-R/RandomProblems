@@ -28,3 +28,4 @@ patchPluginXml {
 task myClean(type: Delete) {
     delete buildDir
 }
+
