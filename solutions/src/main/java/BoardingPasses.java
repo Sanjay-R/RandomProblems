@@ -16,7 +16,7 @@
  */
 public class BoardingPasses {
 
-    String[] all;
+    String[] all; //form of FROM-TO
 
     public BoardingPasses(String[] all) {
         this.all = all;
