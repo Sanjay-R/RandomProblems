@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertArrayEquals;
+
 import org.junit.Test;
 
 public class BoardingPassesTest {
@@ -11,6 +13,7 @@ public class BoardingPassesTest {
         d[3] = "WIL - uta";
 
         BoardingPasses bp = new BoardingPasses(d);
-        bp.solve(d);
+
+        assertArrayEquals(d, bp.solve(d));
     }
 }

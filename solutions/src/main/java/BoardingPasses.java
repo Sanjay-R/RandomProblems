@@ -1,6 +1,5 @@
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.IllegalFormatException;
 
 /**
  * Imagine having a bunch of plane tickets for your upcoming connecting flights, all nicely set and ordered in your hands.
@@ -75,10 +74,15 @@ public class BoardingPasses {
         //now somehow chain from start city to end city
 
         String[] result = new String[all.length-1];
+        int index = 0;
+        result[index++] = startCity;
         //do a for-loop of length all.length-1
         while (!startCity.equals(endCity)) {
             //enter the results in the result array so u can return
             String x = fromTo.get(startCity);
+            result[index] = x;
+            startCity = x;
+            index++;
 
         }
         //fromTo.entrySet().stream().filter(e -> valuesTF.contains(e.getKey()));
@@ -87,6 +91,6 @@ public class BoardingPasses {
         //https://www.baeldung.com/java-stream-filter-lambda
         //https://dzone.com/articles/java-hashmap-search-and-sort
 
-        return null;
+        return result;
     }
 }
