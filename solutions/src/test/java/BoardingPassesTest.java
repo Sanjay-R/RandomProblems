@@ -14,6 +14,13 @@ public class BoardingPassesTest {
 
         BoardingPasses bp = new BoardingPasses(d);
 
-        assertArrayEquals(d, bp.solve(d));
+        String[] arr = new String[5];
+        arr[0] = "AMS";
+        arr[1] = "LON";
+        arr[2] = "PAR";
+        arr[3] = "WIL";
+        arr[4] = "UTA";
+
+        assertArrayEquals(arr, bp.solve(d));
     }
 }
