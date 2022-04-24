@@ -59,8 +59,8 @@ public class BoardingPasses {
         String startCity = "";
         String endCity = "";
 
-        for (String k : fromTo.keySet()) {
-            if (!toFrom.containsKey(k)) {
+        for (String k : fromTo.keySet()) { //for-loop -> T(n) = O(n)
+            if (!toFrom.containsKey(k)) { //containsKey -> T(n) = O(1)
                 startCity = k;
             }
         }
@@ -73,7 +73,7 @@ public class BoardingPasses {
 
         //now somehow chain from start city to end city
 
-        String[] result = new String[all.length-1];
+        String[] result = new String[all.length + 1];
         int index = 0;
         result[index++] = startCity;
         //do a for-loop of length all.length-1
