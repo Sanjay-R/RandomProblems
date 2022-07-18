@@ -48,7 +48,42 @@ public class BTFromPreorderAndPostorder {
                 return new TreeNode(inorder[0]);
             }
 
-            return divide(preorder, inorder);
+            return divide(preorder, inorder, 0, preorder.length - 1);
+        }
+
+        public TreeNode divide(int[] pre, int[] in, int l, int r) {
+            if (l > r) {
+                //case of no nodes left
+                return null;
+            } else if (l == r) {
+                //case of a single node left
+                return new TreeNode(pre[l]);
+            } else if (l + 1 == r) {
+                //case of two nodes left
+                TreeNode root = new TreeNode(pre[l]);
+                //check if there is only a root and a right side
+                if(pre[l] == in[l]) {
+                    root.right = new TreeNode(in[r]);
+                } else {
+                    root.left = new TreeNode(in[l]);
+                }
+                return root;
+            } else {
+                //default case
+                //create root
+                TreeNode root = new TreeNode(pre[l]);
+
+                int pointerVal = root.val; // == pre[l]
+                int iter = l;
+                while(pointerVal != in[iter] && iter <= r) {
+                    iter++;
+                }
+
+                //conquer on each side
+                root.left = divide(pre, in, (l + 1), iter);
+                root.right = divide(pre, in, (iter + 1), r);
+                return root;
+            }
         }
 
         public TreeNode divide(int[] pre, int[] in) {
@@ -92,3 +127,5 @@ public class BTFromPreorderAndPostorder {
     }
 }
 
+//[3,9,20,15,7]
+//[9,3,15,20,7]
