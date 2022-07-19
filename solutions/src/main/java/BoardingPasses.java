@@ -19,7 +19,7 @@ import java.util.HashMap;
  */
 public class BoardingPasses {
 
-    String[] all; //form of FROM-TO 
+    String[] all; //form of FROM-TO
 
     public BoardingPasses(String[] all) {
         this.all = all;
