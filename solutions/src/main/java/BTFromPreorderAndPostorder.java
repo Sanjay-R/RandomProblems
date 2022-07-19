@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BTFromPreorderAndPostorder {
 
@@ -42,15 +44,37 @@ public class BTFromPreorderAndPostorder {
     }
 
     class Solution {
+        Map<Integer, Integer> hashIndex; //hashMap to store which index a value of inorder is at, basically <value, index>
+        int rootIndex; //to keep track of the current root
         public TreeNode buildTree(int[] preorder, int[] inorder) {
+
+            hashIndex = new HashMap<>();
+            rootIndex = 0;
+            for (int i = 0; i < inorder.length; i++) {
+                hashIndex.put(inorder[i], i);
+            }
 
             if (preorder.length == 1) {
                 return new TreeNode(inorder[0]);
             }
 
-            return divide(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
+            return divide(preorder, 0, preorder.length - 1);
         }
 
+        //3rd attempt: The given solution
+        public TreeNode divide(int[] pre, int l, int r) {
+            if (l > r) {
+                return null;
+            } else {
+                TreeNode root = new TreeNode(pre[rootIndex++]);
+                int in_index = hashIndex.getOrDefault(root.val, -1); //same as "iter"
+                root.left = divide(pre, l, in_index - 1);
+                root.right = divide(pre, (in_index + 1), r);
+                return root;
+            }
+        }
+
+        //1st attempt
         public TreeNode divide(int[] pre, int[] in) {
             switch (pre.length) {
                 case 0:
@@ -90,7 +114,7 @@ public class BTFromPreorderAndPostorder {
             }
         }
 
-        // This one does not work
+        //2nd attempt: This one does not work
         public TreeNode divide(int[] pre, int[] in, int l, int r, int l_in, int r_in) {
             if (l > r) {
                 //case of no nodes left
@@ -127,6 +151,3 @@ public class BTFromPreorderAndPostorder {
         }
     }
 }
-
-//[3,9,20,15,7]
-//[9,3,15,20,7]
